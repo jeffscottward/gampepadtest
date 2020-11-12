@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef} from "react";
 import * as THREE from "three";
-import { Canvas, useFrame } from "react-three-fiber";
+import { Canvas } from "react-three-fiber";
 import useGamepads from "../hooks/useGamepads";
 import N64Controller from "../utils/N64Controller";
 
