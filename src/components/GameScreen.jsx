@@ -27,12 +27,12 @@ export default function GameScreen({ setGameStarted }) {
   useGamepads((gamepads) => setGamepads(gamepads));
 
   // Starts game after 3 second countdown
-  useTimeout(() => setStarted(true), 3000);
+  // useTimeout(() => setStarted(true), 3000);
   // Ends game after 30 seconds (+ 3 seconds for pre)
-  useTimeout(() => {
-    setStarted(false);
-    setGameOver(true);
-  }, GAME_DURATION * 1000 + 3000);
+  // useTimeout(() => {
+  //   setStarted(false);
+  //   setGameOver(true);
+  // }, GAME_DURATION * 1000 + 3000);
 
   const endGameHandler = () => {
     setGameStarted(false);
@@ -52,12 +52,12 @@ export default function GameScreen({ setGameStarted }) {
       // If controller connected with buttons
       if (gamepads && gamepads[0] && gamepads[0].buttons.length > 0) {
         // Pressed Up
-        if (gamepads[0].buttons[12].pressed) {
+        if (gamepads[0].buttons[12] && gamepads[0].buttons[12].pressed) {
           // AwesomeDebouncePromise(() => increasePosition(), 300);
           increasePosition();
         }
         // Pressed Down
-        if (gamepads[0].buttons[13].pressed) {
+        if (gamepads[0].buttons[12] && gamepads[0].buttons[13].pressed) {
           // AwesomeDebouncePromise(() => decreasePosition(), 300);
           decreasePosition();
         }
@@ -89,15 +89,15 @@ export default function GameScreen({ setGameStarted }) {
   }, [gamepads, started]);
 
   // Make position drop every second
-  useInterval(() => {
-    if (started) {
-      const newPosition = position.current - 10;
-      position.current = newPosition > 0 ? newPosition : 0;
-      setScore((prevScore) =>
-        Math.round(prevScore + calculateScore(position.current))
-      );
-    }
-  }, 1000);
+  // useInterval(() => {
+  //   if (started) {
+  //     const newPosition = position.current - 10;
+  //     position.current = newPosition > 0 ? newPosition : 0;
+  //     setScore((prevScore) =>
+  //       Math.round(prevScore + calculateScore(position.current))
+  //     );
+  //   }
+  // }, 1000);
 
   // Game over screen
   if (gameOver) {
